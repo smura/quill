@@ -90,6 +90,12 @@ class Quill {
         this.root.classList.toggle('ql-blank', this.editor.isBlank());
       }
     });
+    this.root.addEventListener('compositionstart', () => {
+      this.root.classList.add('ql-composition');
+    });
+    this.root.addEventListener('compositionend', () => {
+      this.root.classList.remove('ql-composition');
+    });
     this.emitter.on(Emitter.events.SCROLL_UPDATE, (source, mutations) => {
       let range = this.selection.lastRange;
       let index = range && range.length === 0 ? range.index : undefined;
