@@ -68,7 +68,9 @@ class Selection {
         const range = this.cursor.restore();
         if (!range) return;
         setTimeout(() => {
-          this.setNativeRange(range.startNode, range.startOffset, range.endNode, range.endOffset);
+          if (this.cursor.parent) {
+            this.setNativeRange(range.startNode, range.startOffset, range.endNode, range.endOffset);
+          }
         }, 1);
       }
     });
